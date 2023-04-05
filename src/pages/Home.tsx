@@ -1,42 +1,23 @@
 import React from "react";
-import { BsCurrencyDollar } from "react-icons/bs";
 import { GoPrimitiveDot } from "react-icons/go";
-import { IoIosMore } from "react-icons/io";
 import { DropDownListComponent } from "@syncfusion/ej2-react-dropdowns";
 
-import { Stacked, Pie, Button, LineChart, SparkLine } from "../components";
+import { Stacked, Button, LineChart, SparkLine } from "../components";
 import {
-  medicalproBranding,
   recentTransactions,
-  weeklyStats,
   dropdownData,
   SparklineAreaData,
-  ecomPieChartData,
 } from "../data/dummy";
 import { earningData } from "../data/meiroData";
 import { useStateContext } from "../contexts/ContextProvider";
-import product9 from "../data/product9.jpg";
 
-const DropDown = ({ currentMode }) => (
-  <div className="w-28 border-1 border-color px-2 py-1 rounded-md">
-    <DropDownListComponent
-      id="time"
-      fields={{ text: "Time", value: "Id" }}
-      style={{ border: "none", color: currentMode === "Dark" && "white" }}
-      value="1"
-      dataSource={dropdownData}
-      popupHeight="220px"
-      popupWidth="120px"
-    />
-  </div>
-);
 
-const Home = ({ data }) => {
+const Home = ({ data }: any) => {
   const { currentColor, currentMode } = useStateContext();
 
   const total_drivers = data.length;
   var total_revenue = 0;
-  function numberFormat(x) {
+  function numberFormat(x : string) {
     x = x.toString();
     var lastThree = x.substring(x.length - 3);
     var otherNumbers = x.substring(0, x.length - 3);
@@ -46,13 +27,54 @@ const Home = ({ data }) => {
   }
 
   var total_trips = 0;
-  data.forEach((element) => {
+  data.forEach((element: any) => {
     const temp = element.trips;
-    temp.forEach((e) => {
+    temp.forEach((e: any) => {
       total_revenue = total_revenue + Number(e.revenue);
       total_trips += 1;
     });
   });
+
+
+  const buttonProps = {
+    color: "white",
+    bgColor: currentColor,
+    
+    borderRadius: "10px",
+    icon: undefined,
+    bgHoverColor: "",
+    size: "",
+    width: undefined
+  }
+
+  const buttonProps1={
+    ...buttonProps,
+    text: "Download Report",
+  }
+  const buttonProps2 = {
+    ...buttonProps,
+    text: "Add",
+  }
+
+  // const dropDownStyle: React.CSSProperties = {
+  //   border: "none",
+  //   color: currentMode === "Dark" ? "white" : ""
+  // }
+
+
+  const DropDown = () => (
+    <div className="w-28 border-1 border-color px-2 py-1 rounded-md">
+      <DropDownListComponent
+        id="time"
+        fields={{ text: "Time", value: "Id" }}
+        style={{ border: "none", color: currentMode === "Dark" ? "white" : "" }}
+        value="1"
+        dataSource={dropdownData}
+        popupHeight="220px"
+        popupWidth="120px"
+      />
+    </div>
+  );
 
   return (
     <div className="mt-10 ">
@@ -77,8 +99,8 @@ const Home = ({ data }) => {
                 <span className="text-lg lg:text-3xl font-semibold">
                   {item.title === "Total Drivers" && total_drivers}
                   {item.title === "Total Revenue" &&
-                    "₹" + numberFormat(total_revenue)}
-                  {item.title === "Total Trips" && numberFormat(total_trips)}
+                    "₹" + numberFormat(String(total_revenue))}
+                  {item.title === "Total Trips" && numberFormat(String(total_trips))}
                 </span>
               </p>
             </div>
@@ -135,15 +157,12 @@ const Home = ({ data }) => {
               </div>
               <div className="mt-10">
                 <Button
-                  color="white"
-                  bgColor={currentColor}
-                  text="Download Report"
-                  borderRadius="10px"
+                  prop={buttonProps1}
                 />
               </div>
             </div>
             <div>
-              <Stacked currentMode={currentMode} width="320px" height="360px" />
+              <Stacked width="320px" height="360px" />
             </div>
           </div>
         </div>
@@ -153,7 +172,7 @@ const Home = ({ data }) => {
         <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl">
           <div className="flex justify-between items-center gap-2">
             <p className="text-xl font-semibold">Recent Transactions</p>
-            <DropDown currentMode={currentMode} />
+            <DropDown />
           </div>
           <div className="mt-10 w-72 md:w-400">
             {recentTransactions.map((item) => (
@@ -181,11 +200,7 @@ const Home = ({ data }) => {
           <div className="flex justify-between items-center mt-5 border-t-1 border-color">
             <div className="mt-3">
               <Button
-                color="white"
-                bgColor={currentColor}
-                text="Add"
-                borderRadius="10px"
-              />
+                prop={buttonProps2} />
             </div>
 
             <p className="text-gray-400 text-sm">36 Recent Transactions</p>
@@ -194,7 +209,7 @@ const Home = ({ data }) => {
         <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl w-96 md:w-760">
           <div className="flex justify-between items-center gap-2 mb-10">
             <p className="text-xl font-semibold">Sales Overview</p>
-            <DropDown currentMode={currentMode} />
+            <DropDown />
           </div>
           <div className="md:w-full overflow-auto">
             <LineChart />
@@ -205,4 +220,9 @@ const Home = ({ data }) => {
   );
 };
 
+
+
+
 export default Home;
+
+

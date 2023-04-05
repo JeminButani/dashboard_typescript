@@ -33,7 +33,6 @@ function App() {
     setCurrentMode,
     currentMode,
     activeMenu,
-    currentColor,
     themeSettings,
     setThemeSettings,
   } = useStateContext();
@@ -58,7 +57,7 @@ function App() {
       setCurrentColor(currentThemeColor);
       setCurrentMode(currentThemeMode);
     }
-  }, []);
+  }, [setCurrentColor, setCurrentMode]);
 
   return (
     <div className={currentMode === "Dark" ? "dark" : ""}>
