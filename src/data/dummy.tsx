@@ -42,9 +42,9 @@ import product4 from "./product4.jpg";
 import product5 from "./product5.jpg";
 import product6 from "./product6.jpg";
 import product7 from "./product7.jpg";
-import product8 from "./product8.jpg";
+import { ChartRangePadding, EdgeLabelPlacement, IntervalType, ValueType } from "@syncfusion/ej2-react-charts";
 
-export const gridOrderImage = (props) => (
+export const gridOrderImage = (props: any): JSX.Element => (
   <div>
     <img
       className="rounded-xl h-20 md:ml-3"
@@ -54,7 +54,7 @@ export const gridOrderImage = (props) => (
   </div>
 );
 
-export const gridOrderStatus = (props) => (
+export const gridOrderStatus = (props: any): JSX.Element => (
   <button
     type="button"
     style={{ background: props.StatusBg }}
@@ -64,7 +64,19 @@ export const gridOrderStatus = (props) => (
   </button>
 );
 
-export const kanbanGrid = [
+type KanBanGrid = ({
+  headerText: string;
+  keyField: string;
+  allowToggle: boolean;
+  isExpanded?: undefined;
+} | {
+  headerText: string;
+  keyField: string;
+  allowToggle: boolean;
+  isExpanded: boolean;
+})[]
+
+export const kanbanGrid: KanBanGrid = [
   { headerText: "To Do", keyField: "Open", allowToggle: true },
 
   { headerText: "In Progress", keyField: "InProgress", allowToggle: true },
@@ -78,7 +90,9 @@ export const kanbanGrid = [
 
   { headerText: "Done", keyField: "Close", allowToggle: true },
 ];
-const gridEmployeeProfile = (props) => (
+
+
+const gridEmployeeProfile = (props: any): JSX.Element => (
   <div className="flex items-center gap-2">
     <img
       className="rounded-full w-10 h-10"
@@ -89,13 +103,15 @@ const gridEmployeeProfile = (props) => (
   </div>
 );
 
-const gridEmployeeCountry = (props) => (
+const gridEmployeeCountry = (props: any): JSX.Element => (
   <div className="flex items-center justify-center gap-2">
     <GrLocation />
     <span>{props.Country}</span>
   </div>
 );
-export const EditorData = () => (
+
+
+export const EditorData = (): JSX.Element => (
   <div>
     <h3>
       Try React React has been designed from the start for gradual adoption, and
@@ -141,7 +157,7 @@ export const EditorData = () => (
     </h3>
   </div>
 );
-const customerGridImage = (props) => (
+const customerGridImage = (props: any): JSX.Element => (
   <div className="image flex gap-4">
     <img
       className="rounded-full w-10 h-10"
@@ -155,7 +171,7 @@ const customerGridImage = (props) => (
   </div>
 );
 
-const customerGridStatus = (props) => (
+const customerGridStatus = (props: any): JSX.Element => (
   <div className="flex gap-2 justify-center items-center text-gray-700 capitalize">
     <p
       style={{ background: props.StatusBg }}
@@ -164,7 +180,20 @@ const customerGridStatus = (props) => (
     <p>{props.Status}</p>
   </div>
 );
-export const areaPrimaryXAxis = {
+
+type AreaXAxisType = {
+  valueType: string;
+  labelFormat: string;
+  majorGridLines: {
+    width: number;
+  };
+  intervalType: string;
+  edgeLabelPlacement: string;
+  labelStyle: {
+    color: string;
+  };
+}
+export const areaPrimaryXAxis: AreaXAxisType = {
   valueType: "DateTime",
   labelFormat: "y",
   majorGridLines: { width: 0 },
@@ -173,7 +202,24 @@ export const areaPrimaryXAxis = {
   labelStyle: { color: "gray" },
 };
 
-export const areaPrimaryYAxis = {
+type AreaYAxisType = {
+  labelFormat: string;
+  lineStyle: {
+    width: number;
+  };
+  maximum: number;
+  interval: number;
+  majorTickLines: {
+    width: number;
+  };
+  minorTickLines: {
+    width: number;
+  }; labelStyle: {
+    color: string;
+  };
+}
+
+export const areaPrimaryYAxis: AreaYAxisType = {
   labelFormat: "{value}%",
   lineStyle: { width: 0 },
   maximum: 4,
@@ -393,7 +439,18 @@ export const FinancialPrimaryYAxis = {
   majorTickLines: { width: 0 },
 };
 
-export const LinePrimaryXAxis = {
+type lineXAxisType = {
+  valueType: ValueType | undefined;
+  labelFormat: string;
+  intervalType: IntervalType | undefined;
+  edgeLabelPlacement: EdgeLabelPlacement | undefined;
+  majorGridLines: {
+    width: number;
+  };
+  background: string;
+}
+
+export const LinePrimaryXAxis: lineXAxisType = {
   valueType: "DateTime",
   labelFormat: "y",
   intervalType: "Years",
@@ -402,7 +459,26 @@ export const LinePrimaryXAxis = {
   background: "white",
 };
 
-export const LinePrimaryYAxis = {
+type lineYchartType = {
+
+  labelFormat: string;
+  rangePadding: ChartRangePadding|undefined;
+  minimum: number;
+  maximum: number;
+  interval: number;
+  lineStyle: {
+    width: number;
+  };
+  majorTickLines: {
+    width: number;
+  };
+  minorTickLines: {
+    width: number;
+  };
+
+}
+
+export const LinePrimaryYAxis: lineYchartType = {
   labelFormat: "{value}%",
   rangePadding: "None",
   minimum: 0,
@@ -2965,7 +3041,7 @@ export const SparklineAreaData = [
   { x: 5, yval: 10 },
 ];
 
-export const lineCustomSeries = [
+export const lineCustomSeries : any[] = [
   {
     dataSource: lineChartData[0],
     xName: "x",

@@ -10,14 +10,21 @@ import { RiStockLine } from "react-icons/ri";
 import {
   BsKanban,
   BsBarChart,
-  BsBoxSeam,
   BsCurrencyRupee,
 } from "react-icons/bs";
 import { GiLouvrePyramid } from "react-icons/gi";
 import { MdOutlineSupervisorAccount } from "react-icons/md";
 import { HiOutlineRefresh } from "react-icons/hi";
 
-export const links = [
+type LinksType={
+  title: string,
+  links:{
+    name: string,
+    icon: JSX.Element,
+  }[],
+}[]
+
+export const links: LinksType = [
   {
     title: "Dashboard",
     links: [
@@ -98,7 +105,17 @@ export const links = [
   },
 ];
 
-export const earningData = [
+type EarningDataType ={
+  icon: JSX.Element;
+  amount: string;
+  percentage: string;
+  title: string;
+  iconColor: string;
+  iconBg: string;
+  pcColor: string;
+}[]
+
+export const earningData : EarningDataType= [
   {
     icon: <MdOutlineSupervisorAccount />,
     amount: "10,354",
@@ -128,7 +145,21 @@ export const earningData = [
   },
 ];
 
-export const driverGrid = [
+type DriverGridType=({
+  field: string;
+  headerText: string;
+  width: string;
+  textAlign: string;
+  format?: undefined;
+} | {
+  field: string;
+  headerText: string;
+  width: string;
+  format: string;
+  textAlign: string;
+})[]
+
+export const driverGrid: DriverGridType = [
   { field: "srno", headerText: "Sr no.", width: "100", textAlign: "Center" },
 
   { field: "did", headerText: "Driver Id", width: "150", textAlign: "Center" },

@@ -6,13 +6,15 @@ import { useStateContext } from '../../contexts/ContextProvider';
 
 const LineChart = () => {
   const { currentMode } = useStateContext();
+  const primaryXAxis = {...LinePrimaryXAxis};
+  const primaryYAxis = {...LinePrimaryYAxis};
 
   return (
     <ChartComponent
       id="line-chart"
       height="420px"
-      primaryXAxis={LinePrimaryXAxis}
-      primaryYAxis={LinePrimaryYAxis}
+      primaryXAxis ={primaryXAxis }
+      primaryYAxis={primaryYAxis}
       chartArea={{ border: { width: 0 } }}
       tooltip={{ enable: true }}
       background={currentMode === 'Dark' ? '#33373E' : '#fff'}

@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { Navbar, Footer, Sidebar, ThemeSettings } from "./components";
@@ -24,9 +24,32 @@ import {
 } from "./pages";
 import "./maincss/index.css";
 import { useStateContext } from "./contexts/ContextProvider";
+import { BrowserRouter,  Route , Routes} from "react-router-dom";
 
 
-
+// type DriverDataType = {
+//   did: Number,
+//   fname: String,
+//   lname: String,
+//   bdate: Date,
+//   dlno: String,
+//   working: Boolean,
+//   trips: [
+//     {
+//       tid: Number,
+//       stime: Date,
+//       etime: Date,
+//       sloc: [],
+//       eloc: [],
+//       revenue: Number,
+//       city: {
+//         id: String,
+//         name: String,
+//         state: String,
+//       },
+//     },
+//   ],
+// }
 function App() {
   const {
     setCurrentColor,
@@ -37,9 +60,7 @@ function App() {
     setThemeSettings,
   } = useStateContext();
 
-
-
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any>([]);
   useEffect(() => {
     fetch("http://localhost:5000/test", {
       method: "GET",
@@ -63,7 +84,7 @@ function App() {
     <div className={currentMode === "Dark" ? "dark" : ""}>
       <BrowserRouter>
         <div className="flex relative dark:bg-main-dark-bg">
-          <div className="app-1 fixed right-4 bottom-4 " > 
+          <div className="app-1 fixed right-4 bottom-4 " >
             <TooltipComponent content="Settings" position="TopCenter">
               <button
                 type="button"

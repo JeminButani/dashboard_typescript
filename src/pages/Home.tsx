@@ -39,7 +39,6 @@ const Home = ({ data }: any) => {
   const buttonProps = {
     color: "white",
     bgColor: currentColor,
-    
     borderRadius: "10px",
     icon: undefined,
     bgHoverColor: "",
@@ -76,11 +75,21 @@ const Home = ({ data }: any) => {
     </div>
   );
 
+  type EarningDataType={
+    icon: JSX.Element;
+    amount: string;
+    percentage: string;
+    title: string;
+    iconColor: string;
+    iconBg: string;
+    pcColor: string;
+  }
+
   return (
     <div className="mt-10 ">
       <div className="flex flex-wrap   lg:flex-nowrap  justify-center">
         <div className="flex m-3 flex-wrap justify-center  gap-1 items-center w-full">
-          {earningData.map((item) => (
+          {earningData.map((item: EarningDataType) => (
             <div
               key={item.title}
               //   style={{ width: "30%" }}
